@@ -11,21 +11,37 @@ class Solution {
         if(i<0 || i>=m || j<0 || j>=n) return false;
         if(vis[i][j]) return false;
         vis[i][j]=true;
+        // string cur_step=mp[grid[i][j]];
+        // int k=0;
+        // for(char dir : cur_step){
+        //     int ni=i, nj=j;
+        //     if(dir=='l') nj--;
+        //     else if(dir=='r') nj++;
+        //     else if(dir=='u') ni--;
+        //     else if(dir=='b') ni++;
+
+        //     if(ni<0 || ni>=m || nj<0 || nj>=n) continue;
+
+        //     string next = mp[grid[ni][nj]];
+
+        //     for(char back : next){
+        //         if(check(dir, back)){
+        //             if(solve(grid, ni, nj)) return true;
+        //         }
+        //     }
+        // }
+        // return false;
         string cur_step=mp[grid[i][j]];
-        int k=0;
-        for(char dir : cur_step){
-            int ni=i, nj=j;
+        for(auto &dir:cur_step){
+            int ni=i,nj=j;
             if(dir=='l') nj--;
             else if(dir=='r') nj++;
             else if(dir=='u') ni--;
             else if(dir=='b') ni++;
-
             if(ni<0 || ni>=m || nj<0 || nj>=n) continue;
-
-            string next = mp[grid[ni][nj]];
-
-            for(char back : next){
-                if(check(dir, back)){
+            string next=mp[grid[ni][nj]];
+            for(char back:next){
+                if(check(dir,back)){
                     if(solve(grid, ni, nj)) return true;
                 }
             }
